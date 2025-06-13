@@ -1,4 +1,4 @@
-name: Deploy Flask OTP App to Azure.
+name: Deploy Flask OTP App to Azure
 
 on:
   push:
