@@ -15,14 +15,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd loginpage/otp-login-app
+          cd otp-login-app
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Zip the app (without top folder)
+      - name: Zip the app
         run: |
-          cd loginpage/otp-login-app
-          zip -r ../../flask-app.zip * .[^.]*
+          cd otp-login-app
+          zip -r ../flask-app.zip . -x '*.git*'
 
       - name: Deploy using Oryx Build
         uses: azure/webapps-deploy@v2
@@ -30,4 +30,4 @@ jobs:
           app-name: test-app13
           slot-name: production
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: flask-app.zip  # ✅ now correct
+          package: flask-app.zip
