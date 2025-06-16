@@ -13,10 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set working directory
-        run: cd otp-login-app
-
-      - name: Install dependencies
+      - name: Install dependencies (locally for lint/test only, optional)
         run: |
           cd otp-login-app
           python -m pip install --upgrade pip
@@ -33,4 +30,4 @@ jobs:
           app-name: test-app13
           slot-name: production
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: otp-login-app  # path to the folder (not zip)
+          package: flask-app.zip  # 🟢 Corrected: use ZIP to trigger Oryx
