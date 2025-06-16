@@ -1,4 +1,4 @@
-name: Deploy Flask OTP App to Azure
+name: Deploy to Azure App Service
 
 on:
   push:
@@ -14,19 +14,18 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r otp-login-app/requirements.txt
+          pip install -r requirements.txt
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: test-app13
-          slot-name: production
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: otp-login-app
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          package: .
