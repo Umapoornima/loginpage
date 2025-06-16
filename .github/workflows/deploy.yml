@@ -27,10 +27,10 @@ jobs:
           cd otp-login-app
           zip -r ../flask-app.zip . -x '*.git*'
 
-      - name: Deploy to Azure Web App
+      - name: Deploy using Oryx Build
         uses: azure/webapps-deploy@v2
         with:
           app-name: test-app13
           slot-name: production
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: flask-app.zip
+          package: otp-login-app  # path to the folder (not zip)
